@@ -5,6 +5,7 @@ import PublicRoutes from './routers/PublicRoutes'
 import PrivateRoutes from './routers/PrivateRoutes'
 import Register from './features/Register'
 import Dices from './features/Dices'
+import Login from './features/Login'
 
 function App () {
   return (
@@ -16,6 +17,14 @@ function App () {
             element={
               <PublicRoutes>
                 <Register />
+              </PublicRoutes>
+            }
+          />
+          <Route
+            path='/login'
+            element={
+              <PublicRoutes>
+                <Login />
               </PublicRoutes>
             }
           />

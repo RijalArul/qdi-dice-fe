@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Register () {
   return (
@@ -18,9 +19,12 @@ export default function Register () {
         </div>
         <div class='mb-3'>
           <label for='password' class='form-label'>
-            Password
+            password
           </label>
           <input type='password' class='form-control' id='password' />
+        </div>
+        <div class='mb-2'>
+          <Link to='/login'>Sign In</Link>
         </div>
         <button type='submit' class='btn btn-primary'>
           Submit
