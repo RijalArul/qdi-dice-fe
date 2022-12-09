@@ -1,6 +1,6 @@
 import { SET_USER, SET_ERRORS } from '../keys'
 const initialState = {
-  currentUser: JSON.parse(localStorage.getItem('currentUser')),
+  currentUser: localStorage.getItem('currentUser'),
   errors: []
 }
 

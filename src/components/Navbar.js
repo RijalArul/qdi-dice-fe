@@ -1,4 +1,10 @@
+import { useNavigate } from 'react-router-dom'
 export default function Navbar () {
+  const navigate = useNavigate()
+  function logout () {
+    localStorage.clear()
+    navigate('/login')
+  }
   return (
     <nav class='navbar navbar-expand-lg bg-light'>
       <div class='container-fluid'>
@@ -26,7 +32,6 @@ export default function Navbar () {
             >
               Create Room
             </button>
-
             <div
               class='modal fade'
               id='modalForm'
@@ -87,6 +92,10 @@ export default function Navbar () {
                 </div>
               </div>
             </div>
+
+            <a class='nav-link active' aria-current='page' onClick={logout}>
+              Logout
+            </a>
           </div>
         </div>
       </div>
