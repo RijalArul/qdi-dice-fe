@@ -1,6 +1,33 @@
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { setErrors, createRooms } from '../store/actions/diceAction'
+import { toast } from 'react-toastify'
+
 export default function Navbar () {
+  const [room, setRoom] = useState({})
   const navigate = useNavigate()
+  let dispatch = useDispatch()
+  const { errors } = useSelector(state => state.diceState)
+  useEffect(() => {
+    if (errors) {
+      errors.data?.message.forEach(error => {
+        toast.error(error)
+      })
+      dispatch(setErrors(''))
+    }
+  }, [errors])
+
+  function handleCreateRooms (e) {
+    e.preventDefault()
+
+    dispatch(createRooms(room))
+  }
+
+  function handleChange (e) {
+    setRoom({ ...room, [e.target.name]: e.target.value })
+  }
+
   function logout () {
     localStorage.clear()
     navigate('/login')
@@ -61,8 +88,10 @@ export default function Navbar () {
                         <input
                           type='number'
                           class='form-control'
-                          id='username'
+                          id='max_player'
                           aria-describedby='emailHelp'
+                          name='max_player'
+                          onChange={e => handleChange(e)}
                         />
                       </div>
                       <div class='mb-3'>
@@ -73,6 +102,8 @@ export default function Navbar () {
                           type='number'
                           class='form-control'
                           id='total_shake'
+                          name='total_shake'
+                          onChange={e => handleChange(e)}
                         />
                       </div>
                     </form>
@@ -85,7 +116,11 @@ export default function Navbar () {
                     >
                       Close
                     </button>
-                    <button type='button' class='btn btn-primary'>
+                    <button
+                      type='button'
+                      class='btn btn-primary'
+                      onClick={handleCreateRooms}
+                    >
                       Save changes
                     </button>
                   </div>

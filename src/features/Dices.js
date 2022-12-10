@@ -8,8 +8,6 @@ export default function Dices () {
   let dispatch = useDispatch()
   const { errors, rooms } = useSelector(state => state.diceState)
 
-  console.log(rooms)
-
   useEffect(() => {
     dispatch(fetchRooms())
   }, [])
