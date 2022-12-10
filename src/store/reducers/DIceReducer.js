@@ -1,4 +1,4 @@
-import { SET_ROOMS, SET_ERRORS } from '../keys'
+import { SET_ROOMS, SET_ERRORS, SET_ROOM } from '../keys'
 const initialState = {
   rooms: [],
   room: {},
@@ -12,6 +12,12 @@ function diceReducer (state = initialState, action) {
       return {
         ...state,
         rooms: payload,
+        errors: null
+      }
+    case SET_ROOM:
+      return {
+        ...state,
+        room: payload,
         errors: null
       }
     case SET_ERRORS:

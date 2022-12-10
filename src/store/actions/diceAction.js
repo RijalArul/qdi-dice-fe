@@ -75,3 +75,58 @@ export function createRooms (payload) {
     }
   }
 }
+
+export function fetchRoom (payload) {
+  return async function (dispatch, getState) {
+    try {
+      const resp = await API_URL({
+        url: `/rooms/${payload}`,
+        method: 'GET',
+        headers: {
+          access_token: localStorage.getItem('currentUser')
+        }
+      })
+      const { data } = resp.data
+      dispatch(setRoom(data))
+    } catch (err) {
+      const errors = {
+        data: err.response?.data,
+        status: err.response?.status
+      }
+      if (err.response?.status) {
+        dispatch(setErrors(errors))
+      } else {
+        dispatch(setErrors(errors))
+      }
+    }
+  }
+}
+// export function joinRooms (payload) {
+//   return async function (dispatch, getState) {
+//     try {
+//       const { rooms } = getState().diceState
+//       const resp = await API_URL({
+//         method: 'POST',
+//         url: '/rooms',
+//         headers: {
+//           access_token: localStorage.getItem('currentUser')
+//         },
+//         data: payload
+//       })
+
+//       const { data } = resp.data
+//       const newRooms = [...rooms, data]
+//       dispatch(setRooms(newRooms))
+//     } catch (err) {
+//       const errors = {
+//         data: err.response?.data,
+//         status: err.response?.status
+//       }
+//       if (err.response?.status) {
+//         dispatch(setErrors(errors))
+//       } else {
+//         dispatch(setErrors(errors))
+//       }
+//     }
+//   }
+// }

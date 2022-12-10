@@ -8,6 +8,7 @@ import Dices from './features/Dices'
 import Login from './features/Login'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import DetailRoom from './features/DetailRoom'
 
 function App () {
   return (
@@ -36,6 +37,14 @@ function App () {
             element={
               <PrivateRoutes>
                 <Dices />
+              </PrivateRoutes>
+            }
+          />
+          <Route
+            path='/room/:id'
+            element={
+              <PrivateRoutes>
+                <DetailRoom />
               </PrivateRoutes>
             }
           />
