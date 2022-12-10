@@ -1,6 +1,8 @@
-import { SET_ROOMS, SET_ERRORS, SET_ROOM } from '../keys'
+import { SET_ROOMS, SET_ERRORS, SET_ROOM, SET_DICES, SET_WINNER } from '../keys'
 const initialState = {
   rooms: [],
+  winners: {},
+  dices: [],
   room: {},
   errors: []
 }
@@ -19,6 +21,16 @@ function diceReducer (state = initialState, action) {
         ...state,
         room: payload,
         errors: null
+      }
+    case SET_DICES:
+      return {
+        ...state,
+        dices: payload
+      }
+    case SET_WINNER:
+      return {
+        ...state,
+        winners: payload
       }
     case SET_ERRORS:
       return { ...state, errors: payload }
